@@ -1,0 +1,14 @@
+name: "."
+title: "Kaley Dodson"
+description: |
+  Kaley Dodson
+output_dir: "docs"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+    - text: "Portfolio"
+      href: kaley.html
+output: distill::distill_article

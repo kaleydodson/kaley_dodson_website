@@ -1,0 +1,20 @@
+{
+  "articles": [
+    {
+      "path": "about.html",
+      "title": "About this site",
+      "description": "Some additional details about the website",
+      "author": [],
+      "contents": "\n\n\n\n",
+      "last_modified": "2021-01-24T20:59:14-08:00"
+    },
+    {
+      "path": "index.html",
+      "title": "Kaley Dodson",
+      "author": [],
+      "contents": "\n\n          \n      \n      Kaley Dodson\n      \n      \n      Home\n      About\n      Portfolio\n      ☰\n      \n      \n      \n        \n          \n            Kaley Dodson\n          \n          \n            \n              I am currently pursuing my Masters of Environmental Science and Management at UCSB’s Bren School.\n            \n            \n              I am currently pursuing my Masters of Environmental Science and Management at UCSB’s Bren School.\n            \n          \n\n          \n            \n              \n                  \n                    \n                      LinkedIn\n                    \n                  \n                \n                                \n                  \n                    \n                      GitHub\n                    \n                  \n                \n                                \n                  \n                    \n                      Email\n                    \n                  \n                \n                              \n          \n\n          \n            \n              \n                                \n                  \n                    LinkedIn\n                  \n                \n                                \n                  \n                    GitHub\n                  \n                \n                                \n                  \n                    Email\n                  \n                \n                              \n            \n          \n        \n      \n    \n\n    \n    \n    ",
+      "last_modified": "2021-01-24T20:59:14-08:00"
+    }
+  ],
+  "collections": []
+}

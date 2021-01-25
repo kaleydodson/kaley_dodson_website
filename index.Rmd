@@ -1,0 +1,16 @@
+---
+title: "Kaley Dodson"
+image: "Dodson_Kaley_MESM2022.jpeg"
+links:
+  - label: LinkedIn
+    url: "https://linkedin.com/in/kaleydodson/"
+  - label: GitHub
+    url: "https://github.com/kaleydodson"
+  - label: Email
+    url: "mailto:kdodson@ucsb.edu"
+output:
+  postcards::jolla
+site: distill::distill_website
+---
+ 
+I am currently pursuing my Masters of Environmental Science and Management at UCSB's Bren School. 
