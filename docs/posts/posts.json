@@ -1,7 +1,7 @@
 [
   {
     "path": "posts/2021-02-10-welcome/",
-    "title": "Tidy Tuesday Sample",
+    "title": "Tidy Tuesday",
     "description": "An exercise in converting and mapping spatial data.",
     "author": [
       {
@@ -13,7 +13,7 @@
     "categories": [],
     "contents": "\nI made a basic map of total plastic pollution by country using: 1) dplyr join function to merge lat/long coords from downloaded data; and 2) tmap package to map countries’ plastic data onto a world map.\nI also found this helpful bit of code data.frame[row_number, column_number] = new_value and used it to rename some countries in the plastics data so they would match my downloaded dataset.\n\n\n\nFigure 1: Total plastic pollution by country (add units)\n\n\n\n\n\n\n",
     "preview": {},
-    "last_modified": "2021-02-10T22:53:51-08:00",
-    "input_file": {}
+    "last_modified": "2021-02-10T23:06:43-08:00",
+    "input_file": "welcome.utf8.md"
   }
 ]
