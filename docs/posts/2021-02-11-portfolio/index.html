@@ -94,7 +94,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--  https://schema.org/Article -->
 <meta property="article:published" itemprop="datePublished" content="2021-02-10"/>
 <meta property="article:created" itemprop="dateCreated" content="2021-02-10"/>
-<meta name="article:author" content=""/>
 
 <!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
 <meta property="og:title" content="Kaley Dodson: Tidy Tuesday"/>
@@ -112,12 +111,12 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Tidy Tuesday"]},{"type":"character","attributes":{},"value":["An exercise in converting and mapping spatial data."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":[""]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":[]}},"value":[]}]}]},{"type":"character","attributes":{},"value":["02-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","date","output"]}},"value":[{"type":"character","attributes":{},"value":["Tidy Tuesday"]},{"type":"character","attributes":{},"value":["An exercise in converting and mapping spatial data."]},{"type":"character","attributes":{},"value":["02-10-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["welcome_files/anchor-4.2.2/anchor.min.js","welcome_files/bowser-1.9.3/bowser.min.js","welcome_files/distill-2.2.21/template.v2.js","welcome_files/jquery-1.11.3/jquery.min.js","welcome_files/popper-2.6.0/popper.min.js","welcome_files/tippy-6.2.7/tippy-bundle.umd.min.js","welcome_files/tippy-6.2.7/tippy-light-border.css","welcome_files/tippy-6.2.7/tippy.css","welcome_files/tippy-6.2.7/tippy.umd.min.js","welcome_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["portfolio_files/anchor-4.2.2/anchor.min.js","portfolio_files/bowser-1.9.3/bowser.min.js","portfolio_files/distill-2.2.21/template.v2.js","portfolio_files/jquery-1.11.3/jquery.min.js","portfolio_files/popper-2.6.0/popper.min.js","portfolio_files/tippy-6.2.7/tippy-bundle.umd.min.js","portfolio_files/tippy-6.2.7/tippy-light-border.css","portfolio_files/tippy-6.2.7/tippy.css","portfolio_files/tippy-6.2.7/tippy.umd.min.js","portfolio_files/webcomponents-2.0.0/webcomponents.js","TT_map.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2061,7 +2060,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Tidy Tuesday","description":"An exercise in converting and mapping spatial data.","authors":[{"author":"","authorURL":{},"affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-10T00:00:00.000+00:00","citationText":[]}
+{"title":"Tidy Tuesday","description":"An exercise in converting and mapping spatial data.","authors":[],"publishedDate":"2021-02-10T00:00:00.000+00:00"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -2075,7 +2074,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div class="nav-right">
 <a href="../../index.html">Home</a>
 <a href="../../about.html">About</a>
-<a href="../../portfolio.html">Portfolio</a>
+<a href="../../work_samples.html">Portfolio</a>
 <a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
 </div>
 </nav>
@@ -2091,16 +2090,18 @@ document.addEventListener('DOMContentLoaded', function() {
 <p><p>An exercise in converting and mapping spatial data.</p></p>
 </div>
 
-<div class="d-byline">
-  
-  true
-  
-<br/>02-10-2021
-</div>
 
 <div class="d-article">
 <p>I made a basic map of total plastic pollution by country using: 1) dplyr join function to merge lat/long coords from downloaded data; and 2) tmap package to map countries’ plastic data onto a world map.</p>
 <p>I also found this helpful bit of code <code>data.frame[row_number, column_number] = new_value</code> and used it to rename some countries in the plastics data so they would match my downloaded dataset.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div class="figure"><span id="fig:unnamed-chunk-1"></span>
+<img src="TT_map.png" alt="Total plastic pollution by country (add units)" width="343" />
+<p class="caption">
+Figure 1: Total plastic pollution by country (add units)
+</p>
+</div>
+</div>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->

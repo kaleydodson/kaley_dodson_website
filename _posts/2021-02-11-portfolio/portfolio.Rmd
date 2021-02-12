@@ -2,9 +2,6 @@
 title: "Tidy Tuesday"
 description: |
   An exercise in converting and mapping spatial data.
-author:
-  - name: ''
-    url: {}
 date: 02-10-2021
 output:
   distill::distill_article:
@@ -25,6 +22,6 @@ I made a basic map of total plastic pollution by country using:
 I also found this helpful bit of code `data.frame[row_number, column_number] = new_value` and used it to rename some countries in the plastics data so they would match my downloaded dataset.
 
 ```{r, fig.cap="Total plastic pollution by country (add units)"}
-knitr::include_graphics(here("images", "TT_map.png"))
+knitr::include_graphics("TT_map.png")
 ```
 

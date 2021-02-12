@@ -10,5 +10,5 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Portfolio"
-      href: portfolio.html
+      href: work_samples.html
 output: distill::distill_article
