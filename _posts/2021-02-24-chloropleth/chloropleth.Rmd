@@ -1,8 +1,7 @@
 ---
 title: "Chloropleth Map"
 description: |
-  Spatial data visualization using ggplot
-date: 2021-02-24
+  Spatial data visualization using ggplot.
 output:
   distill::distill_article:
     self_contained: false

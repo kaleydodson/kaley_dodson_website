@@ -2,25 +2,25 @@
   {
     "path": "posts/2021-02-24-chloropleth/",
     "title": "Chloropleth Map",
-    "description": "Spatial data visualization using ggplot",
+    "description": "Spatial data visualization using ggplot.",
     "author": [],
     "date": "2021-02-24",
     "categories": [],
     "contents": "\nHere I created a static map in ggplot illustrating inland oil spill events by county. After joining spatial data for CA counties with a dataset for oil spills in the state, I used geom_sf() to create a chloropleth map in which the fill color depended on the count of inland oil spill events by county.\n\n\n\nFigure 1: Total inland oil spills by county in 2008\n\n\n\n\n\n\n",
     "preview": "posts/2021-02-24-chloropleth/chloropleth.png",
-    "last_modified": "2021-02-24T23:30:47-08:00",
-    "input_file": {}
+    "last_modified": "2021-02-24T23:38:46-08:00",
+    "input_file": "chloropleth.utf8.md"
   },
   {
     "path": "posts/2021-02-11-tidytues/",
     "title": "Tidy Tuesday",
-    "description": "An exercise in converting and mapping spatial data.",
+    "description": "Mapping spatial data with tmap.",
     "author": [],
-    "date": "2021-02-10",
+    "date": "2021-02-24",
     "categories": [],
-    "contents": "\nI made a basic map of total plastic pollution by country using: 1) dplyr join function to merge lat/long coords from downloaded data; and 2) tmap package to map countries’ plastic data onto a world map.\nI also found this helpful bit of code data.frame[row_number, column_number] = new_value and used it to rename some countries in the plastics data so they would match my downloaded dataset.\n\n\n\nFigure 1: Total plastic pollution by country (add units)\n\n\n\n\n\n\n",
+    "contents": "\nI made a basic map of total plastic pollution by country using: 1) dplyr join function to merge lat/long coords from downloaded data; and 2) tmap package to map countries’ plastic data onto a world map.\nI used this helpful bit of code data.frame[row_number, column_number] = new_value to rename some countries in the plastics data so they would match my downloaded dataset.\n\n\n\nFigure 1: Total plastic pollution by country (add units)\n\n\n\n\n\n\n",
     "preview": "posts/2021-02-11-tidytues/TT_map.png",
-    "last_modified": "2021-02-12T14:15:52-08:00",
-    "input_file": {}
+    "last_modified": "2021-02-24T23:38:31-08:00",
+    "input_file": "tidytues.utf8.md"
   }
 ]

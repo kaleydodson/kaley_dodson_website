@@ -1,8 +1,7 @@
 ---
 title: "Tidy Tuesday"
 description: |
-  Mapping spatial data in R.
-date: 02-10-2021
+  Mapping spatial data with tmap.
 output:
   distill::distill_article:
     self_contained: false
