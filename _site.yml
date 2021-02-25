@@ -1,8 +1,9 @@
 name: "."
 title: "Kaley Dodson"
 description: |
-  Kaley Dodson
+   Kaley Dodson
 output_dir: "docs"
+theme: theme.css
 navbar:
   right:
     - text: "Home"
