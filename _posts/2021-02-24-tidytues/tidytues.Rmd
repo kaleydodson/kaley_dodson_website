@@ -2,6 +2,7 @@
 title: "Tidy Tuesday"
 description: |
   Mapping spatial data with tmap.
+date: 2021-02-11
 output:
   distill::distill_article:
     self_contained: false
