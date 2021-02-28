@@ -1,0 +1,62 @@
+---
+title: "Text Analysis"
+description: |
+  Sentiment analysis using the NRC lexicon.
+date: 2021-02-27
+output:
+  distill::distill_article:
+    code_folding: true
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tidyverse)
+library(tidytext)
+library(textdata)
+library(readtext)
+library(ggwordcloud)
+library(colorspace)
+library(here)
+```
+
+```{r, cache=TRUE}
+# load text data
+fl_text <- readtext(here("data", "fear_and_loathing.txt"))
+
+#wrangling
+fl_tidy <- fl_text %>% 
+  mutate(text = str_split(fl_text, pattern = "\\n")) %>% # splits full text up by line breaks
+  unnest(text) %>% # moves each line of text out to its own row
+  slice(-(1:17)) %>% # removes title pages
+  mutate(text = str_to_lower(text)) %>% # converts all text to lowercase
+  unnest_tokens(word, text) # moves each word out into its own row
+  
+fl_nonstop_words <- fl_tidy %>% 
+  anti_join(stop_words) # removes stop words
+
+nonstop_counts <- fl_nonstop_words %>% 
+  count(word) # counts total use of each word
+
+fl_nrc <- fl_nonstop_words %>% 
+  inner_join(get_sentiments("nrc")) # joins text and nrc dataframes
+
+fl_nrc_counts <- fl_nrc %>% 
+  count(sentiment) # counts words that fall into each sentiment category
+
+```
+
+I wrangled and visualized the top 100 words that appear in the novel Fear and Loathing in Las Vegas, then joined the data frame with the nrc lexicon before counting words associated with its sentiment bins and visualizing the result.
+
+```{r}
+# visualization
+ggplot(data = fl_nrc_counts, aes(x = sentiment, y = n)) +
+  geom_col(fill = rainbow(10)) +
+  coord_flip() +
+  theme_classic() +
+  labs(y = " ", x = "nrc sentiment")
+```
+
+##### **Citation:** Thompson, Hunter S, and Ralph Steadman. Fear and Loathing in Las Vegas: A Savage Journey to the Heart of the American Dream. , 1998. 

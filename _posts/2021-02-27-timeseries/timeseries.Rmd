@@ -1,0 +1,74 @@
+---
+title: "Timeseries Plot"
+description: |
+  Wrangling and visualizing time series data.
+date: 2021-02-27
+output:
+  distill::distill_article:
+    code_folding: true
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(knitr)
+library(tidyverse)
+library(shiny)
+library(here)
+library(janitor)
+library(lubridate)
+library(tsibble)
+library(feasts)
+library(slider)
+library(patchwork)
+library(RColorBrewer)
+```
+
+```{r}
+# read in data 
+willamette_fish <- read.csv(here("data", "willamette_fish_passage.csv")) %>% 
+  clean_names() 
+
+#data wrangling, turn dataset into a tsibble
+
+fish_ts <- willamette_fish %>% 
+   pivot_longer( # tidy's data by consolidating steelhead, coho, and jack_coho columns called species into one and their respective observations into a second colunm called fish_count
+    cols = c(steelhead, coho, jack_coho),
+    names_to = "species",
+    values_to = "fish_count"
+  ) %>% 
+  mutate(date = mdy(date)) %>% # converts date to y-m-d format
+  as_tsibble(key = species, index = date) %>% # converts data to tsibble
+  select(date, species, fish_count) %>% # retains only date, species, and fish_count variables
+  mutate(species_name = case_when( # creates new column with species' full names
+    species == "coho" ~ "Coho",
+    species == "jack_coho" ~ "Jack Coho",
+    species == "steelhead" ~ "Steelhead"
+  ))
+
+# wrangling to aggregate fish counts by year
+fish_annual <- fish_ts %>% 
+  index_by(year = ~year(.)) %>% # groups observations by year
+  group_by(species_name) %>% # groups observations by species
+  summarize(total_count = sum(fish_count, na.rm = TRUE)) # counts observations per year by species
+```
+
+As part of a report exploring data for adult fish passage recorded from 2001-01-01 to 2010-12-31 on the Willamette River in Oregon, I worked with time series data. After tidying the data using the pivot_longer() function and converting to a tsibble, I wrangled to aggregate counts by year and produced the following summary plot.
+
+```{r, fig.width = 8, fig.height = 5, fig.cap="**Figure 3:** Annual salmon counts at the Willamette Falls fish ladder for steelhead and coho species. (Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text))"}
+
+#vizualization of annual counts
+ggplot(data = fish_annual, aes(x = year, y = total_count, fill = species_name)) +
+  geom_col(show.legend = FALSE, color = "#317eb1") +
+  facet_wrap(~species_name, scales = "free") +
+  theme_bw() +
+  labs(x = "Year", y = "Individuals Observed") +
+  scale_x_continuous(breaks = c(2002, 2004, 2006, 2008, 2010)) +
+  theme(axis.text.x = element_text(angle = 30)) +
+  scale_y_continuous(labels = scales::comma) +
+  scale_fill_brewer(palette = "Blues")
+
+```
+
+

@@ -5,6 +5,7 @@ description: |
 date: 2021-02-11
 output:
   distill::distill_article:
+    code_folding: true
     self_contained: false
 ---
 
@@ -12,15 +13,56 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 library(knitr)
+library(tidyverse)
+library(dplyr)
+library(sf)
+library(tmap)
+library(tmaptools)
+library(here)
+```
+
+```{r, results='hide'}
+tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
+
+plastics <- tuesdata$plastics
+
+data(World)
+
+world_lat_long <- read.csv(here("data", "world_country_and_usa_states_latitude_and_longitude_values.csv")) %>% 
+  select(country, latitude, longitude) 
+
+# wrangling for total plastic per country
+plastics_subset <- plastics %>% 
+  filter(parent_company == "Grand Total")
+
+plastics_subset[51, 1] = "United States"
+plastics_subset[33, 1] = "Nigeria"
+plastics_subset[15, 1] = "Ecuador"
+plastics_subset[43, 1] = "Taiwan"
+
+# joining with lat & long coordinates
+merged_data <- left_join(plastics_subset, world_lat_long, by = "country") 
+
+# convert to lat and long to spatial coordinates
+plastics_sp <- merged_data %>% 
+  drop_na(longitude, latitude) %>% 
+  st_as_sf(coords = c("longitude", "latitude"))
+
+st_crs(plastics_sp) = 4326
 ```
 
 I made a basic map of total plastic pollution by country using:
 1) dplyr join function to merge lat/long coords from downloaded data; and 
 2) tmap package to map countries' plastic data onto a world map. 
 
-I used this helpful bit of code `data.frame[row_number, column_number] = new_value` to rename some countries in the plastics data so they would match my downloaded dataset.
+I renamed some countries in the plastics data so they would match my downloaded dataset.
 
-```{r, fig.cap="Total plastic pollution by country (add units)"}
-knitr::include_graphics("TT_map.png")
+```{r}
+# map
+tm_shape(World) +
+  tm_borders("thistle", lwd = .5) +
+tm_shape(plastics_sp) +
+  tm_bubbles(size = "grand_total") 
 ```
+
 
