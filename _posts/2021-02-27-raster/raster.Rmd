@@ -22,9 +22,11 @@ library(rnaturalearth)
 library(rnaturalearthdata)
 ```
 
-```{r}
-# read in data
+Here I read in a raster stack and wrote a function to determine the presence of cetacean speices. After applying the function, I calculated overall cetacean species richness and then converted the raster to a dataframe. Finally, I visualized the result by layering raster data with spatial data from the rnaturalearthdata package.
 
+```{r, results = FALSE, fig.cap = "Map of cetacean species richness in the California Bight, using a threshold of 75% probability of occurence to determine presence for each species."}
+
+# read in data
 cetacean_richness <- here("data", "ca_cetaceans")
 
 cetaceans <- dir(cetacean_richness, full.names = TRUE, pattern = "*.tif")
@@ -41,11 +43,6 @@ is_present <- function(x, thresh = .75) {
 cetaceans_richness <- calc(cetaceans_stack, fun = is_present)
 
 species_richness <- calc(cetaceans_richness, fun = sum, na.rm = TRUE)
-```
-
-Here I read in a raster stack and wrote a function to determine the presence of cetacean speices. After applying the function, I calculated overall cetacean species richness and then converted the raster to a dataframe. Finally, I visualized the result by layering raster data with spatial data from the rnaturalearthdata package.
-
-```{r, results = FALSE, fig.cap = "Map of cetacean species richness in the California Bight, using a threshold of 75% probability of occurence to determine presence for each species."}
 
 # download ca coastline layer from rnaturalearth
 coastline <- ne_download(scale = "medium", type = 'land', category = 'physical', returnclass = "sf")
@@ -54,6 +51,7 @@ coastline <- ne_download(scale = "medium", type = 'land', category = 'physical',
 species_richness_df <- raster::rasterToPoints(species_richness) %>% 
   as.data.frame()
 
+# visualization
 ggplot() +
   geom_raster(data = species_richness_df, aes(x = x, y = y, fill = layer)) +
   geom_sf(data = coastline, fill = "lavender") +

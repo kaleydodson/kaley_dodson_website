@@ -22,11 +22,13 @@ library(colorspace)
 library(here)
 ```
 
-```{r, cache=TRUE}
+I wrangled and visualized the top 100 words that appear in the novel Fear and Loathing in Las Vegas, then joined the data frame with the nrc lexicon before counting words associated with its sentiment bins and visualizing the result.
+
+```{r}
 # load text data
 fl_text <- readtext(here("data", "fear_and_loathing.txt"))
 
-#wrangling
+# wrangling
 fl_tidy <- fl_text %>% 
   mutate(text = str_split(fl_text, pattern = "\\n")) %>% # splits full text up by line breaks
   unnest(text) %>% # moves each line of text out to its own row
@@ -46,11 +48,6 @@ fl_nrc <- fl_nonstop_words %>%
 fl_nrc_counts <- fl_nrc %>% 
   count(sentiment) # counts words that fall into each sentiment category
 
-```
-
-I wrangled and visualized the top 100 words that appear in the novel Fear and Loathing in Las Vegas, then joined the data frame with the nrc lexicon before counting words associated with its sentiment bins and visualizing the result.
-
-```{r}
 # visualization
 ggplot(data = fl_nrc_counts, aes(x = sentiment, y = n)) +
   geom_col(fill = rainbow(10)) +

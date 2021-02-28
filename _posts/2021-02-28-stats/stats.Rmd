@@ -1,0 +1,70 @@
+---
+title: "Statistical Analysis"
+description: |
+  A sample report using PCA.
+date: 2021-02-28
+output:
+  distill::distill_article:
+    code_folding: true
+    self_contained: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(tidyverse)
+library(here)
+library(ggfortify)
+
+```
+
+### 1. Introduction
+This mini-report uses data compiled by Zander Venter using Google Earth Engine to summarize environmental and climatic variables for countries across the globe. The report explores the relationships among a subset of those variables, including country elevation, cropland cover, tree canopy cover, average annual rainfall and temperature, wind and cloudiness, using principal components analysis. The results are visualized in a biplot and interpreted in a brief summary.
+
+### 2. Exploratory Findings & Summary
+
+```{r, results=FALSE, fig.cap="Relationships among select environmental and climatic variables for countries across the globe. Vectors indicate loadings of variables along each principal component. Data: Venter, 2018"}
+# read in data
+world_env_vars <- read.csv(here("data", "world_env_vars.csv"))
+
+# wrangling + pca 
+world_env_vars_pca <- world_env_vars %>% 
+  select(elevation, cropland_cover, tree_canopy_cover, rain_mean_annual, temp_mean_annual, wind, cloudiness) %>% # retains only the variables elevation, cropland and tree canopy cover, average annual rain and temperature, wind, & cloudiness
+  drop_na() %>% # removes na values for the above variables
+  scale() %>% # scales data to create equal units of measurement
+  prcomp() # principal components analysis
+
+# to see loadings
+world_env_vars_pca$rotation
+
+# biplot
+world_env_vars_complete <- world_env_vars %>% 
+  drop_na(elevation, cropland_cover, tree_canopy_cover, rain_mean_annual, temp_mean_annual, wind, cloudiness) # creates data subset to match that used for pca
+
+autoplot(world_env_vars_pca,
+         data = world_env_vars_complete,
+         colour = 'seagreen2',
+         loadings = TRUE,
+         loadings.label = TRUE,
+         loadings.colour = "black",
+         loadings.label.colour = "black",
+         loadings.label.vjust = -.5,
+         loadings.label.hjust = 1,
+         loadings.label.size = 3.25) +
+  theme_minimal() +
+  labs(x = "Component 1 (40.33%)", y = "Component 2 (20.95%)")
+```
+
+#### Summary
+Major takeaways from the PCA include:
+
+- Tree canopy cover and average annual rainfall are positively correlated.
+- Cropland cover and elevation are positively correlated.
+- Cropland cover and average annual temperature are negatively correlated.
+- Wind and tree canopy cover are negatively correlated.
+- Cloudiness and cropland cover are minimally correlated.
+- There are no observable clusters of observations and only a couple of outliers.
+- Cloudiness, tree canopy cover, and average annual rainfall are heavily loaded in the direction of the first principal component.
+- Average annual temperature and cropland cover are heavily loaded in the direction of the second principal component.
+- Over 60% of total variance is represented.

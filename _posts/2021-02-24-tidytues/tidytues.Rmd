@@ -21,6 +21,10 @@ library(tmaptools)
 library(here)
 ```
 
+For my first time participating in TidyTuesday, I made a basic map of total plastic pollution by country using the:
+1) dplyr join function to merge lat/long coords from downloaded data; and 
+2) tmap package to map countries' plastic data onto a world map. 
+
 ```{r, results='hide'}
 tuesdata <- tidytuesdayR::tt_load(2021, week = 5)
 
@@ -35,6 +39,7 @@ world_lat_long <- read.csv(here("data", "world_country_and_usa_states_latitude_a
 plastics_subset <- plastics %>% 
   filter(parent_company == "Grand Total")
 
+# renames countries in the plastics data so they match countries dataset
 plastics_subset[51, 1] = "United States"
 plastics_subset[33, 1] = "Nigeria"
 plastics_subset[15, 1] = "Ecuador"
@@ -49,15 +54,7 @@ plastics_sp <- merged_data %>%
   st_as_sf(coords = c("longitude", "latitude"))
 
 st_crs(plastics_sp) = 4326
-```
 
-I made a basic map of total plastic pollution by country using:
-1) dplyr join function to merge lat/long coords from downloaded data; and 
-2) tmap package to map countries' plastic data onto a world map. 
-
-I renamed some countries in the plastics data so they would match my downloaded dataset.
-
-```{r}
 # map
 tm_shape(World) +
   tm_borders("thistle", lwd = .5) +

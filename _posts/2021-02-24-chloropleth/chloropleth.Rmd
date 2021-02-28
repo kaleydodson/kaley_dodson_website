@@ -19,9 +19,10 @@ library(sf)
 library(tmap)
 ```
 
-```{r, results=FALSE}
-# read in data
+Here I created a static map in ggplot illustrating inland oil spill events by county. After joining spatial data for CA counties with a dataset for oil spills in the state, I used geom_sf() to create a chloropleth map in which the fill color depended on the count of inland oil spill events by county.
 
+```{r, results=FALSE, fig.cap="Total inland oil spills by county in 2008"}
+# read in data
 ca_counties <- read_sf(here("data", "ca_counties"), layer = "CA_Counties_TIGER2016") %>% 
   clean_names() %>% 
   select(name)
@@ -35,11 +36,6 @@ st_crs(oil_spills)
 
 ca_counties <- st_transform(ca_counties, st_crs(oil_spills)) # transforms to same crs as oil spill dataset
 
-```
-
-Here I created a static map in ggplot illustrating inland oil spill events by county. After joining spatial data for CA counties with a dataset for oil spills in the state, I used geom_sf() to create a chloropleth map in which the fill color depended on the count of inland oil spill events by county.
-
-```{r, fig.cap="**Figure 1:** Total inland oil spills by county in 2008"}
 # combine data sets to bid spill counts to counties
 county_spills <- ca_counties %>% 
   st_join(oil_spills)

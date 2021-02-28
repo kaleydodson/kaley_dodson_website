@@ -25,13 +25,15 @@ library(patchwork)
 library(RColorBrewer)
 ```
 
-```{r}
+As part of a report exploring data for adult fish passage recorded from 2001-01-01 to 2010-12-31 on the Willamette River in Oregon, I worked with time series data. After tidying the data using the pivot_longer() function and converting to a tsibble, I wrangled to aggregate counts by year and produced the following summary plot.
+
+```{r, fig.width = 8, fig.height = 5, fig.cap="Annual salmon counts at the Willamette Falls fish ladder for steelhead and coho species. (Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text))"}
+
 # read in data 
 willamette_fish <- read.csv(here("data", "willamette_fish_passage.csv")) %>% 
   clean_names() 
 
-#data wrangling, turn dataset into a tsibble
-
+# data wrangling, turn dataset into a tsibble
 fish_ts <- willamette_fish %>% 
    pivot_longer( # tidy's data by consolidating steelhead, coho, and jack_coho columns called species into one and their respective observations into a second colunm called fish_count
     cols = c(steelhead, coho, jack_coho),
@@ -52,11 +54,6 @@ fish_annual <- fish_ts %>%
   index_by(year = ~year(.)) %>% # groups observations by year
   group_by(species_name) %>% # groups observations by species
   summarize(total_count = sum(fish_count, na.rm = TRUE)) # counts observations per year by species
-```
-
-As part of a report exploring data for adult fish passage recorded from 2001-01-01 to 2010-12-31 on the Willamette River in Oregon, I worked with time series data. After tidying the data using the pivot_longer() function and converting to a tsibble, I wrangled to aggregate counts by year and produced the following summary plot.
-
-```{r, fig.width = 8, fig.height = 5, fig.cap="**Figure 3:** Annual salmon counts at the Willamette Falls fish ladder for steelhead and coho species. (Data: [Columbia River DART](http://www.cbr.washington.edu/dart/query/adult_graph_text))"}
 
 #vizualization of annual counts
 ggplot(data = fish_annual, aes(x = year, y = total_count, fill = species_name)) +
