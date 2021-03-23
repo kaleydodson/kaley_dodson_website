@@ -14,3 +14,6 @@ I have spent the past four years working with the Northern Sierra Partnership (N
 
 ### Skills and Interests
 I aim to center the next chapter of my career on advancing climate solutions. To that end, I am refocusing on clean energy and climate policy in my graduate studies at Bren, specializing in Energy and Climate with a focus on Environmental Communication. I aim to build my technical skill set and have become increasingly interested in data analysis and visualization.
+
+I have gained conceptual, technical and communication skills to investigate and answer environmental questions using data. Through analysis of real-world datasets using R, RStudio and GitHub, I have practiced data exploration, analysis and project management. Some of the practical tools I have developed include data wrangling, exploratory data analysis, descriptive statistics, hypothesis testing, describing uncertainty, and data visualization. Additionally, I have learned a few more advanced methods for analyzing environmental data including logistic regression, time series data, and spatial analysis.
+
