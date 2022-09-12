@@ -13,6 +13,6 @@ output:
 site: distill::distill_website
 ---
  
-I am currently pursuing my Masters of Environmental Science and Management at UCSB's Bren School. 
+I am a recent graduate of UCSB's Bren School Environmental Science and Management, looking for work as a Data Analyst. 
 
 
