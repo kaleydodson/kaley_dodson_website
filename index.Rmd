@@ -1,6 +1,6 @@
 ---
 title: "Kaley Dodson"
-image: "Dodson_Kaley_MESM2022.jpeg"
+image: "Dodsen_Kaley_MESM_Bren_001.jpg"
 links:
   - label: LinkedIn
     url: "https://linkedin.com/in/kaleydodson/"
