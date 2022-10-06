@@ -13,6 +13,6 @@ output:
 site: distill::distill_website
 ---
  
-I am a recent graduate of UCSB's Bren School Environmental Science and Management, looking to put my data analytics skills to work. 
+I am a recent graduate of UCSB's Bren School Environmental Science and Management, looking to put my data analytics and visualization skills to work. 
 
 
